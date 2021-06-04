@@ -1,55 +1,63 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    canActivate: [LoginGuard],
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'endereco',
-    loadChildren: () => import('./pages/endereco/endereco.module').then( m => m.EnderecoPageModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/endereco/endereco.module').then(m => m.EnderecoPageModule)
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/perfil/perfil.module').then(m => m.PerfilPageModule)
   },
   {
     path: 'favoritos',
-    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then(m => m.FavoritosPageModule)
   },
   {
     path: 'pedidos-anteriores',
-    loadChildren: () => import('./pages/pedidos-anteriores/pedidos-anteriores.module').then( m => m.PedidosAnterioresPageModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/pedidos-anteriores/pedidos-anteriores.module').then(m => m.PedidosAnterioresPageModule)
   },
   {
     path: 'pedido',
-    loadChildren: () => import('./pages/pedido/pedido.module').then( m => m.PedidoPageModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/pedido/pedido.module').then(m => m.PedidoPageModule)
   },
   {
     path: 'menu',
-    loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
   },
   {
     path: 'produto',
-    loadChildren: () => import('./pages/produto/produto.module').then( m => m.ProdutoPageModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/produto/produto.module').then(m => m.ProdutoPageModule)
   },
   {
     path: 'carrinho',
-    loadChildren: () => import('./pages/carrinho/carrinho.module').then( m => m.CarrinhoPageModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/carrinho/carrinho.module').then(m => m.CarrinhoPageModule)
   },
 ];
 
