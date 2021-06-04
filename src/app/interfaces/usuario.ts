@@ -10,7 +10,7 @@ export interface Usuario {
     sexo?: string;
     email?: string;
     senha?: string;
-    dadosEndereco?: DadoEndereco;
+    dadoEndereco?: DadoEndereco;
     produtosFavoritos?: string[];
     carrinho?: Produto[];
     pedidos?: Pedido[];
