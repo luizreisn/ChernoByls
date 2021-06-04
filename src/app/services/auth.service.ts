@@ -26,11 +26,11 @@ export class AuthService {
   }
 
   public cadastrar(usuarioCadastro: Usuario) {
-    return this.afa.createUserWithEmailAndPassword(usuario.email, usuario.senha);
+    return this.afa.createUserWithEmailAndPassword(usuarioCadastro.email, usuarioCadastro.senha);
   }
 
   public login(usuarioLogin: Usuario) {
-    return this.afa.signInWithEmailAndPassword(usuario.email, usuario.senha);
+    return this.afa.signInWithEmailAndPassword(usuarioLogin.email, usuarioLogin.senha);
   }
 
   public atualizarDados(id: string, usuario: Usuario) {
