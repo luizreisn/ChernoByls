@@ -1,0 +1,88 @@
+.botaoVoltar{
+    position: absolute;
+    font-size: 20px;
+}
+
+.imgLogo{
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.texto{
+    font-size: 20pt;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.produtoId{
+    color: var(--ion-color-primary);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .realizado{
+    color: var(--ion-color-primary);
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  ion-item{
+    ion-row{
+      margin-bottom: 3px;
+      margin-top: 3px;
+    }
+    .imagemProduto{
+      margin-right: 10px;
+      ion-card{
+        height: 83px;
+        width: 83px;
+        background-color: greenyellow;
+        img{
+          margin-top: 10px;
+        }
+      }
+    }
+    .nomeProduto{
+      color: var(--ion-color-primary);
+      font-size: 13pt;
+      font-weight: bold;
+      margin: 0px;
+    }
+    .quantidadeProduto{
+      color: var(--ion-color-primary);
+      font-size: 10pt;
+      margin: 0px;
+    }
+    .descricaoProduto{
+      color: var(--ion-color-primary);
+      font-size: 10pt;
+      margin: 0px;
+    }
+    .valorProduto{
+      height: 20px;
+      p{
+        color: var(--ion-color-primary);
+        font-weight: bold;
+        margin-top: 0px;
+      }
+    }
+  }
+
+  .valores{
+    color: var(--ion-color-primary);
+    text-align: right;
+    font-weight: bold;
+    margin: 5px;
+    margin-right: 16px;
+  }
+  .subtotal{
+    margin-top: 16px;
+  }
+  .total{
+    margin-bottom: 16px;
+  }
