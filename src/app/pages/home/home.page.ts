@@ -36,7 +36,7 @@ export class HomePage {
   public avisos = new Array<Aviso>();
   private avisosSubscription: Subscription;
 
-  public focar = 0;
+  public focar: number;
 
   @ViewChild(IonSlides) slides: IonSlides;
 
@@ -55,11 +55,11 @@ export class HomePage {
   }
 
   public async carregarDados() {
+    console.log('entrou');
+    this.focar = 0;
     this.usuarioId = (await this.authService.getAuth().currentUser).uid
     this.usuarioSubscription = this.authService.getUsuario(this.usuarioId).subscribe(data => {
       this.usuario = data;
-      this.usuario.dadoEndereco.endereco = data.dadoEndereco.endereco;
-      this.usuario.dadoEndereco.numero = data.dadoEndereco.numero;
     });
     this.produtosSubscription = this.produtosService.getProdutos().subscribe(data => {
       this.produtos = data;

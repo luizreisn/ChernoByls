@@ -1,63 +1,65 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons>
-      <ion-menu-button menu="menuHome" class="botaoMenu"></ion-menu-button>
-      <div class="imgLogo">
-        <img src="/assets/img/logo.png" alt="">
-      </div>
-      <ion-button slot="end" class="botaoCarrinho" [routerLink]="['/carrinho']">
-        <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-searchbar placeholder="Buscar Produto" showCancelButton="always" (ionFocus)="focado()"
-      (ionCancel)="desfocado()" (ionChange)="busca($event)"></ion-searchbar>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content id="main" *ngIf="focar === 0; else focarPesquisa">
-  <div *ngIf="usuario">
-    <ion-card color="primary" class="ion-text-center cardEndereco">
-      <ion-card-subtitle>Entregar em:</ion-card-subtitle>
-      <ion-card-title>{{usuario.dadoEndereco.endereco}} {{usuario.dadoEndereco.numero}}</ion-card-title>
-      <ion-button [routerLink]="['/endereco']">
-        <ion-text>Trocar Endereco</ion-text>
-      </ion-button>
-    </ion-card>
-
-    <ion-row class="ion-align-items-center slidesAvisos">
-      <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide *ngFor="let aviso of avisos">
-          <ion-card button [color]="aviso.cor" class="botaoSlide" [routerLink]="['/menu', aviso.id]">
-            <img [src]="aviso.img">
-          </ion-card>
-        </ion-slide>
-      </ion-slides>
-        <ion-col>
-          <ion-button style="margin-left: 140px;" fill="clear" class="ion-no-padding" (click)="voltarSlide()">
-            <ion-icon slot="icon-only" name="chevron-back-circle-outline"></ion-icon>
-          </ion-button>
+<div class="ion-page" id="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons>
+        <ion-menu-button menu="menuHome" class="botaoMenu"></ion-menu-button>
+        <div class="imgLogo">
+          <img src="/assets/img/logo.png" alt="">
+        </div>
+        <ion-button slot="end" class="botaoCarrinho" [routerLink]="['/carrinho']">
+          <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-searchbar placeholder="Buscar Produto" showCancelButton="always" (ionFocus)="focado()"
+        (ionCancel)="desfocado()" (ionChange)="busca($event)"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content *ngIf="focar === 0; else focarPesquisa">
+    <div *ngIf="usuario">
+      <ion-card color="primary" class="ion-text-center cardEndereco">
+        <ion-card-subtitle>Entregar em:</ion-card-subtitle>
+        <ion-card-title>{{usuario.dadoEndereco.endereco}} {{usuario.dadoEndereco.numero}}</ion-card-title>
+        <ion-button [routerLink]="['/endereco']">
+          <ion-text>Trocar Endereco</ion-text>
+        </ion-button>
+      </ion-card>
+  
+      <ion-row class="ion-align-items-center slidesAvisos">
+        <ion-slides pager="true" [options]="slideOpts">
+          <ion-slide *ngFor="let aviso of avisos">
+            <ion-card button [color]="aviso.cor" class="botaoSlide" [routerLink]="['/menu', aviso.id]">
+              <img [src]="aviso.img">
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+          <ion-col>
+            <ion-button style="margin-left: 140px;" fill="clear" class="ion-no-padding" (click)="voltarSlide()">
+              <ion-icon slot="icon-only" name="chevron-back-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button fill="clear" class="ion-no-padding" (click)="avancarSlide()">
+              <ion-icon slot="icon-only" name="chevron-forward-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size="4" *ngFor="let menuEsp of menusEsp">
+          <ion-row class="ion-justify-content-center">
+            <ion-button color="success" class="menuEspecifico" [routerLink]="['/menu', menuEsp.id]">
+              <img [src]="menuEsp.img" alt="">
+            </ion-button>
+            <div class="ion-text-center">
+              <ion-text color="primary">{{menuEsp.nome}}</ion-text>
+            </div>
+          </ion-row>
         </ion-col>
-        <ion-col>
-          <ion-button fill="clear" class="ion-no-padding" (click)="avancarSlide()">
-            <ion-icon slot="icon-only" name="chevron-forward-circle-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="4" *ngFor="let menuEsp of menusEsp">
-        <ion-row class="ion-justify-content-center">
-          <ion-button color="success" class="menuEspecifico" [routerLink]="['/menu', menuEsp.id]">
-            <img [src]="menuEsp.img" alt="">
-          </ion-button>
-          <div class="ion-text-center">
-            <ion-text color="primary">{{menuEsp.nome}}</ion-text>
-          </div>
-        </ion-row>
-      </ion-col>
-    </ion-row>
-  </div>
-</ion-content>
+      </ion-row>
+    </div>
+  </ion-content>
+</div>
 
 <ng-template #focarPesquisa>
   <ion-content>
@@ -72,7 +74,7 @@
   </ion-content>
 </ng-template>
 
-<ion-menu contentId="main" menuId="menuHome" side="start" type="push">
+<ion-menu content-id="main" menuId="menuHome" side="start" type="push">
   <ion-content class="itemsMenu">
     <ion-list>
       <ion-menu-toggle>

@@ -63,7 +63,7 @@ export class LoginPage {
       this.usuarioCadastro.produtosFavoritos = [];
       this.usuarioCadastro.carrinho = [];
       this.usuarioCadastro.pedidos = [];
-      this.usuarioCadastro.dadoEndereco = {};
+      this.usuarioCadastro.dadoEndereco = {endereco: '', numero: null};
       const novoUsuario = await this.authService.cadastrar(this.usuarioCadastro);
       await this.afs.collection<Usuario>('Usuarios').doc(novoUsuario.user.uid).set(this.usuarioCadastro)
     } catch (error) {
