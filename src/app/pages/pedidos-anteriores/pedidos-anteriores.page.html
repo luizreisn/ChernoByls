@@ -18,18 +18,19 @@
   </ion-card>
 
   <div *ngIf="quantidadePedidos > 0; else semPedidos">
-    <ion-list *ngFor="let pedido of usuario.pedido">
+    <ion-list *ngFor="let pedido of usuario.pedidos">
       <ion-item [routerLink]="['/pedidos', pedido.id]">
         <ion-row class="ion-align-items-center">
-          <ion-col >
+          <ion-col>
             <ion-row>
               <h1 class="pedidoId">#{{pedido.id}}</h1>
             </ion-row>
             <ion-row>
-              <h3 class="pedidoData">{{pedido.data.toMillis()| date: 'dd/MM/yy'}} <br> {{pedido.data.toMillis() | date: 'h:mm a'}}</h3>
+              <h3 class="pedidoData">{{pedido.data.toMillis()| date: 'dd/MM/yy'}} <br>
+                {{pedido.data.toMillis() | date: 'h:mm a'}}</h3>
             </ion-row>
           </ion-col>
-          <ion-col ></ion-col>
+          <ion-col></ion-col>
           <ion-col>
             <h1 class="pedidoTotal">{{pedido.total | currency: 'BRL'}}</h1>
           </ion-col>
@@ -37,7 +38,6 @@
       </ion-item>
     </ion-list>
   </div>
-
 </ion-content>
 
 <ng-template #semPedidos>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Pedido } from '../interfaces/pedido';
-import { Usuario } from '../interfaces/usuario';
-import { AuthService } from '../services/auth.service';
+import { Pedido } from 'src/app/interfaces/pedido';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-pedidos-anteriores',
@@ -18,19 +18,19 @@ export class PedidosAnterioresPage {
   public usuarioId: string = null;
   public usuarioSubscription: Subscription;
 
-  constructor(private authService: AuthService,) { 
+  constructor(private authService: AuthService,) {
     this.carregarDados();
   }
 
-  public async carregarDados(){
-    this.usuarioId = (await this.authService.getAuth().currentUser).uid 
+  public async carregarDados() {
+    this.usuarioId = (await this.authService.getAuth().currentUser).uid
     this.usuarioSubscription = this.authService.getUsuario(this.usuarioId).subscribe(data => {
       this.usuario = data;
-      this.quantidadePedidos = this.usuario.pedido.length;
+      this.quantidadePedidos = this.usuario.pedidos.length;
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.usuarioSubscription.unsubscribe();
   }
 
