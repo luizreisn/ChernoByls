@@ -18,7 +18,7 @@ export class MenuPage {
 
   public produtosFavoritos: string[];
 
-  public menuEsp: MenuEspecifico = {};
+  public menuEsp: MenuEspecifico = null;
   public menuEspId: string = null;
   public menuEspSubscription: Subscription;
 
