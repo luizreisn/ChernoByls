@@ -45,12 +45,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pedido/pedido.module').then(m => m.PedidoPageModule)
   },
   {
-    path: 'menu',
+    path: 'menu/:id',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
   },
   {
-    path: 'produto',
+    path: 'produto/:id',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/produto/produto.module').then(m => m.ProdutoPageModule)
   },
