@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { BotoesMenu } from '../interfaces/botoes-menu';
+import { BotaoMenu } from '../interfaces/botao-menu';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BotaoMenuService {
 
-  private botoesMenuColecao: AngularFirestoreCollection<BotoesMenu>;
+  private botoesMenuColecao: AngularFirestoreCollection<BotaoMenu>;
 
   constructor(private afs: AngularFirestore) {
-    this.botoesMenuColecao = this.afs.collection<BotoesMenu>('BotoesMenu');
+    this.botoesMenuColecao = this.afs.collection<BotaoMenu>('BotoesMenu');
   }
 
   public getBotoesMenu() {
