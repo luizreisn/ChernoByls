@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { Usuario } from '../interfaces/usuario';
-import { AuthService } from '../services/auth.service';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-perfil',
@@ -18,46 +18,46 @@ export class PerfilPage {
   private loading: any;
 
   constructor(private authService: AuthService,
-              private loadingCtrl: LoadingController,
-              private toastCtrl: ToastController,
-              private alertCtrl: AlertController) {
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController) {
     this.carregarUsuarios();
   }
-  
-  public async carregarUsuarios(){
-    this.usuarioId = (await this.authService.getAuth().currentUser).uid 
+
+  public async carregarUsuarios() {
+    this.usuarioId = (await this.authService.getAuth().currentUser).uid
     this.usuarioSubscription = this.authService.getUsuario(this.usuarioId).subscribe(data => {
       this.usuario = data;
     })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.usuarioSubscription.unsubscribe();
   }
 
-  private async atualizarUsuario(){  
+  private async atualizarUsuario() {
     await this.carregando();
-    try{
-      this.authService.atualizarUsuario(this.usuarioId, this.usuario)
+    try {
+      this.authService.atualizarDados(this.usuarioId, this.usuario)
       await this.loading.dismiss();
       this.toast('Dados atualizados com sucesso!');
-    }catch(error){
+    } catch (error) {
       this.toast('Erro ao atualizar usuário!');
       this.loading.dismiss();
     }
   }
 
-  async carregando(){
-    this.loading = await this.loadingCtrl.create({message: 'Por favor aguarde...'}); 
+  async carregando() {
+    this.loading = await this.loadingCtrl.create({ message: 'Por favor aguarde...' });
     return this.loading.present();
   }
 
-  async toast(message: string){
-    const toast = await this.toastCtrl.create({ message, duration: 2000, color: 'primary'});
+  async toast(message: string) {
+    const toast = await this.toastCtrl.create({ message, duration: 2000, color: 'primary' });
     toast.present();
   }
 
-  public async atualizar(){
+  public async atualizar() {
     const alertaSair = await this.alertCtrl.create({
       header: 'Deseja mesmo atualizar os dados?',
       message: 'Os dados antigos serão excluidos permanentemente!',
@@ -66,7 +66,7 @@ export class PerfilPage {
         handler: () => {
           this.carregarUsuarios();
         }
-      },{
+      }, {
         text: 'Atualizar',
         handler: () => {
           this.atualizarUsuario();

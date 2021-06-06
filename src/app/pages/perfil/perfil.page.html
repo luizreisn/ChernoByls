@@ -30,11 +30,12 @@
 
     <ion-item lines="none">
       <ion-input type="number" placeholder="CPF" [(ngModel)]="usuario.cpf"></ion-input>
-    </ion-item> 
+    </ion-item>
 
     <ion-item lines="none">
       <ion-label>Nascimento</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Data de Nacimento" [(ngModel)]="usuario.nascimento"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Data de Nacimento" [(ngModel)]="usuario.nascimento">
+      </ion-datetime>
     </ion-item>
 
     <ion-item lines="none">
