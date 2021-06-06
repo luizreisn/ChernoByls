@@ -19,7 +19,7 @@
 
   <div *ngIf="quantidadePedidos > 0; else semPedidos">
     <ion-list *ngFor="let pedido of usuario.pedidos">
-      <ion-item [routerLink]="['/pedidos', pedido.id]">
+      <ion-item [routerLink]="['/pedido', pedido.id]">
         <ion-row class="ion-align-items-center">
           <ion-col>
             <ion-row>
