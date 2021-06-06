@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pedidos-anteriores/pedidos-anteriores.module').then(m => m.PedidosAnterioresPageModule)
   },
   {
-    path: 'pedido',
+    path: 'pedido/:id',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/pedido/pedido.module').then(m => m.PedidoPageModule)
   },
