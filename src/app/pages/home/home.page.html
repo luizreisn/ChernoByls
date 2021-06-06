@@ -25,25 +25,23 @@
     </ion-card>
 
     <ion-row class="ion-align-items-center slidesAvisos">
-      <ion-col>
-        <ion-button fill="clear" class="ion-no-padding" (click)="voltarSlide()">
-          <ion-icon slot="icon-only" name="chevron-back-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-slides pager="true" [options]="slideOpts">
-          <ion-slide *ngFor="let aviso of avisos">
-            <ion-card button [color]="aviso.cor" class="botaoSlide" [routerLink]="['/menu', aviso.id]">
-              <img [src]="aviso.img">
-            </ion-card>
-          </ion-slide>
-        </ion-slides>
-      </ion-col>
-      <ion-col>
-        <ion-button fill="clear" class="ion-no-padding" (click)="avancarSlide()">
-          <ion-icon slot="icon-only" name="chevron-forward-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-col>
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let aviso of avisos">
+          <ion-card button [color]="aviso.cor" class="botaoSlide" [routerLink]="['/menu', aviso.id]">
+            <img [src]="aviso.img">
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+        <ion-col>
+          <ion-button style="margin-left: 140px;" fill="clear" class="ion-no-padding" (click)="voltarSlide()">
+            <ion-icon slot="icon-only" name="chevron-back-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button fill="clear" class="ion-no-padding" (click)="avancarSlide()">
+            <ion-icon slot="icon-only" name="chevron-forward-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
     </ion-row>
 
     <ion-row>
