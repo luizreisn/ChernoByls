@@ -10,11 +10,11 @@ export class MenuEspService {
 
   private menuEspColecao: AngularFirestoreCollection<MenuEspecifico>;
 
-  constructor(private afs: AngularFirestore) { 
+  constructor(private afs: AngularFirestore) {
     this.menuEspColecao = this.afs.collection<MenuEspecifico>('MenusEsp');
   }
 
-  public getMenusEsp(){
+  public getMenusEsp() {
     return this.menuEspColecao.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -26,7 +26,7 @@ export class MenuEspService {
     )
   }
 
-  public getMenuEsp(id: string){
+  public getMenuEsp(id: string) {
     return this.menuEspColecao.doc<MenuEspecifico>(id).valueChanges();
   }
 }
