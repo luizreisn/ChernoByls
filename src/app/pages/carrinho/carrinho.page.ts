@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Produto } from 'src/app/interfaces/produto';
 import { Usuario } from 'src/app/interfaces/usuario';
@@ -27,7 +27,8 @@ export class CarrinhoPage {
   public usuarioSubscription: Subscription;
 
   constructor(private authService: AuthService,
-    private navCtrl: NavController) {
+    private navCtrl: NavController,
+    private toastCtrl: ToastController) {
     this.carregarDados();
   }
 
@@ -65,11 +66,23 @@ export class CarrinhoPage {
     this.total = this.frete + this.subtotal;
   }
 
-  public fazerPedido() {
+  public verificaPedido(){
+    if(this.usuario.dadoEndereco.endereco === undefined || this.usuario.dadoEndereco.numero === undefined){
+      this.toast();
+      return
+    }else if(this.usuario.dadoEndereco.endereco === '' || this.usuario.dadoEndereco.numero === null){
+      this.toast();
+      return
+    }else{
+      this.fazerPedido();
+    }
+  }
+
+  private fazerPedido() {
     this.id = 'pedido' + Math.max(this.usuario.pedidos.length + 1)
-    //this.usuario.pedido.push({produtos: this.carrinho,subtotal: this.subtotal,frete: this.frete,total: this.total,data: new Date,id: this.id})
-    this.usuario.pedidos.unshift({ produtos: this.carrinho, subtotal: this.subtotal, frete: this.frete, total: this.total, data: firebase.firestore.Timestamp.now(), id: this.id, endereco: this.usuario.dadoEndereco.endereco, numero: this.usuario.dadoEndereco.numero })
+    this.usuario.pedidos.unshift({ id: this.id, produtos: this.carrinho, subtotal: this.subtotal, frete: this.frete, total: this.total, data: firebase.firestore.Timestamp.now(), endereco: this.usuario.dadoEndereco.endereco, numero: this.usuario.dadoEndereco.numero })
     this.usuario.carrinho = []
+    console.log(this.usuario.pedidos)
     this.authService.atualizarPedidos(this.usuarioId, this.usuario)
     this.authService.atualizarCarrinho(this.usuarioId, this.usuario.carrinho)
     this.resetarValores();
@@ -80,6 +93,11 @@ export class CarrinhoPage {
   public resetarValores() {
     this.subtotal = 0;
     this.total = 0;
+  }
+
+  async toast() {
+    const toast = await this.toastCtrl.create({ message: 'Preencha seu endereco corretamente!', duration: 2000, color: 'primary' });
+    toast.present();
   }
 
 }
