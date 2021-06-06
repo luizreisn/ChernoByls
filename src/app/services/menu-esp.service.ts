@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { MenuEspecifico } from '../interfaces/menu-especifico';
+import { MenuEspecifico } from 'src/app/interfaces/menu-especifico';
+
 
 @Injectable({
   providedIn: 'root'
